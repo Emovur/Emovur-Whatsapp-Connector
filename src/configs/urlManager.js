@@ -2,12 +2,12 @@ const urlManager = {
     databases: {
         mongodbUrl_local: "mongodb://localhost:27017/connector_app?replicaSet=rs0",
         mongodbUrl_server: "mongodb://root:YHou7d4xMfV8Ew1qBxQVNhZIN8UWhzKncrfXdyviKEV5C0d1Aeydu40FfPHcYXH4@147.93.155.125:5432/connector_production_app?directConnection=true&authSource=admin",
-        mongodbUrl_staging: "mongodb://root:pWvaZT7iaqZ8nt7GYioo2QlrVp9BwJO91EUlsL0ZC1Cbqf2sp7L0afjRAfS1uqfO@82.180.144.141:5432/connector_staging_app?directConnection=true&authSource=admin",
+        mongodbUrl_staging: "mongodb://root:fecoqB7SwygNMWZsFTj48g1I8z0Ux2mRFqI71b0Ikpc4Oil5j3EA2M2pgIhwbaIB@147.93.168.64:5432/connector_staging_app?directConnection=true&authSource=admin",
     },
     whatsappDatabases: {
         mongodbUrl_local: "mongodb://localhost:27017/whatsapp_app?replicaSet=rs0",
         mongodbUrl_server: "mongodb://root:YHou7d4xMfV8Ew1qBxQVNhZIN8UWhzKncrfXdyviKEV5C0d1Aeydu40FfPHcYXH4@147.93.155.125:5432/whatsapp_production_app?directConnection=true&authSource=admin",
-        mongodbUrl_staging: "mongodb://root:pWvaZT7iaqZ8nt7GYioo2QlrVp9BwJO91EUlsL0ZC1Cbqf2sp7L0afjRAfS1uqfO@82.180.144.141:5432/whatsapp_staging_app?directConnection=true&authSource=admin",
+        mongodbUrl_staging: "mongodb://root:fecoqB7SwygNMWZsFTj48g1I8z0Ux2mRFqI71b0Ikpc4Oil5j3EA2M2pgIhwbaIB@147.93.168.64:5432/whatsapp_staging_app?directConnection=true&authSource=admin",
     },
     redis: {
         connectionUrl_local: {
@@ -21,9 +21,9 @@ const urlManager = {
             password: "XtqFsx5VT3ig8jvSyIbtt9PpTWdIg8SwPfiafgIsCzJlY5LQWadwJ59dzcMWh7y5",
         },
         connectionUrl_staging: {
-            host: "82.180.144.141",
-            port: "5430",
-            password: "VZjdWtltd9eJgpsGpqOZTD3BR8E9emDjxkqef8f1XpFCJoKXHESI3YMOhArVkM65",
+            host: "147.93.168.64",
+            port: "5434",
+            password: "XOVANLnrMUGENjMZxuL0kk8E3cSk6yL2l7RCrw3yBAwAlnQ80muiZVeab9oeil9d",
         },
     },
     internalApiKey: 'h.b1yFVrh,<xMM=<%HYJ3@yx&)>at^d@OquyM"LLCnYdy=BZ0/8sK<MwDK#zBGCn',
