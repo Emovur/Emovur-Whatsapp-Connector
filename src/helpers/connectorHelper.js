@@ -1,4 +1,6 @@
 import connectorModel from "../models/connectorModel.js";
+import { appUrl } from "./urlHelper.js";
+import { getOrgWhatsappSettings } from "./whatsappSettingHelper.js";
 
 const createNewConnector = async (orgId, connectorName) => {
     if (!orgId || !connectorName) {
@@ -33,11 +35,12 @@ const getOrgConnectors = async (orgId) => {
     const connectors = await connectorModel.find({
         orgId: orgId,
     }).lean();
-
+    const connectorConfig = await getConnectorConfig(orgId);
     return connectors.map(connector => ({
         connectorId: connector._id.toString(),
         connectorName: connector.connectorName,
-        status: connector.status
+        status: connector.status,
+        consfig: { ...connectorConfig }
     }));
 }
 
@@ -60,5 +63,15 @@ const getConnectorById = async (connectorId) => {
     }).lean();
     return connector;
 }
+
+const getConnectorConfig = async (orgId) => {
+    const whatsappSettings = await getOrgWhatsappSettings(orgId);
+    return {
+        wabaId: whatsappSettings?.business?.wabaId || null,
+        phoneNumberId: whatsappSettings?.phone?.senderId || null,
+        phoneNumber: whatsappSettings?.phone?.senderNumber || null,
+        baseUrl: appUrl() + "/v20.0",
+    };
+};
 
 export { createNewConnector, getOrgConnectors, changeConnectorStatus, getConnectorById };
