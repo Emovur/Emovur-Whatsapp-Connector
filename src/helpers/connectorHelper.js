@@ -6,6 +6,12 @@ const createNewConnector = async (orgId, connectorName) => {
     if (!orgId || !connectorName) {
         return { status: false, message: "connectorName are required" };
     }
+
+    const connectorList = await getOrgConnectors(orgId);
+    if (connectorList.length >= 1) {
+        return { status: false, message: "Only 1 connector is allowed" };
+    }
+
     const cleanedConnectorName = connectorName.replace(/\s+/g, "").trim();
     const checker = await connectorChecker(orgId, cleanedConnectorName);
     if (!checker) {
@@ -40,7 +46,7 @@ const getOrgConnectors = async (orgId) => {
         connectorId: connector._id.toString(),
         connectorName: connector.connectorName,
         status: connector.status,
-        consfig: { ...connectorConfig }
+        config: { ...connectorConfig }
     }));
 }
 
