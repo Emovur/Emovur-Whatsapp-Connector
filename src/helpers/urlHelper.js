@@ -43,6 +43,10 @@ const interaktDefaultUrl = (type = 0, version = '17.0') => {
 
 }
 
+const interaktUrl = (version = '17.0') => {
+    return "https://amped-express.interakt.ai/api/v" + version + "/";
+}
+
 export {
     dbUrl,
     appUrl,
@@ -51,5 +55,6 @@ export {
     metaUrl,
     facebookUrl,
     interaktDefaultUrl,
-    internalApiKey
+    internalApiKey,
+    interaktUrl
 };

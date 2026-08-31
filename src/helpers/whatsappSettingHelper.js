@@ -1,5 +1,5 @@
 import axios from "axios";
-import { apiUrl, internalApiKey } from "./urlHelper.js";
+import { apiUrl, interaktUrl, internalApiKey, metaUrl } from "./urlHelper.js";
 
 const getOrgWhatsappSettings = async (orgId) => {
     const requestUrl = apiUrl('onboard_app') + "/internal/whatsapp/settings/" + orgId;
