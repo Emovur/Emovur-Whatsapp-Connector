@@ -1,7 +1,7 @@
 const urlManager = {
     databases: {
         mongodbUrl_local: "mongodb://localhost:27017/connector_app?replicaSet=rs0",
-        mongodbUrl_server: "mongodb://root:YHou7d4xMfV8Ew1qBxQVNhZIN8UWhzKncrfXdyviKEV5C0d1Aeydu40FfPHcYXH4@147.93.155.125:5432/connector_production_app?directConnection=true&authSource=admin",
+        mongodbUrl_server: "mongodb://root:N98Ga1nUeONy0cSvbcdJHKQyj7rF7FgMpPhv3ZBlM0QZSABa248HMsleljlIFIuS@147.93.168.120:5432/connector_production_app?directConnection=true&authSource=admin",
         mongodbUrl_staging: "mongodb://root:fecoqB7SwygNMWZsFTj48g1I8z0Ux2mRFqI71b0Ikpc4Oil5j3EA2M2pgIhwbaIB@147.93.168.64:5432/connector_staging_app?directConnection=true&authSource=admin",
     },
     whatsappDatabases: {
@@ -15,10 +15,10 @@ const urlManager = {
             port: "5434",
             password: "qNy8TQEm7JbPO6b5X9lhsB9GRRZY2HzGvafUlRmeseMmU0NNTP46ueYZWKcovAoy",
         },
-        connectionUrl_server: {
-            host: '147.93.155.125',
+        "connectionUrl_server": {
+            host: '147.93.168.120',
             port: '5420',
-            password: "XtqFsx5VT3ig8jvSyIbtt9PpTWdIg8SwPfiafgIsCzJlY5LQWadwJ59dzcMWh7y5",
+            password: "UOi7dzINYb4zqz9msByBdAMtfHKPDHvb4htShYmWMwV9n29EdxBrFYQpJBXhkxpf",
         },
         connectionUrl_staging: {
             host: "147.93.168.64",
