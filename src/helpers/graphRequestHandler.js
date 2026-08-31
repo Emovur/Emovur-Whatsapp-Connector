@@ -34,6 +34,13 @@ const graphGetRequestHandler = async (requestConfig) => {
 const graphPostRequestHandler = async (requestConfig) => {
     const requestUrl = metaUrl() + requestConfig.url;
     const requestHeaders = setupHeaders(requestConfig.headers ?? {});
+    console.dir({
+        method: 'post',
+        url: requestUrl,
+        headers: requestHeaders,
+        params: requestConfig.params ?? {},
+        data: requestConfig.data ?? {},
+    }, { depth: null });
     try {
         const { status, statusText, headers, config, request, data } = await axios({
             method: 'post',
@@ -53,7 +60,7 @@ const graphPostRequestHandler = async (requestConfig) => {
             data: data
         };
     } catch (error) {
-        console.log(error);
+        console.log(error.response.data);
         return {
             status: error.response ? error.response.status : 500,
             statusText: error.response ? error.response.statusText : "Internal Server Error",
