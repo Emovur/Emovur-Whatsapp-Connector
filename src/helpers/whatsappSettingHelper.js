@@ -30,7 +30,7 @@ const getHeaderConfig = async (whatsappSettings) => {
 
 const getInteraktCloudConfig = async (whatsappSettings) => {
     return {
-        submitUrl: interaktUrl() + (whatsappSettings.phone.senderId),
+        submitUrl: interaktUrl(),
         headers: {
             'x-access-token': whatsappSettings.sendToken,
             'x-waba-id': whatsappSettings.business.wabaId
@@ -40,7 +40,7 @@ const getInteraktCloudConfig = async (whatsappSettings) => {
 
 const getMetaCloudConfig = async (whatsappSettings) => {
     return {
-        submitUrl: metaUrl() + (whatsappSettings.phone.senderId),
+        submitUrl: metaUrl(),
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + whatsappSettings.accessToken

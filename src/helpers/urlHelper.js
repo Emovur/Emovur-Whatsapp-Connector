@@ -34,14 +34,6 @@ const metaUrl = (version = '24.0') => {
 const facebookUrl = (version = '24.0') => {
     return "https://www.facebook.com/v" + version + "/";
 }
-const interaktDefaultUrl = (type = 0, version = '17.0') => {
-    const urls = {
-        0: "https://amped-express.interakt.ai/api/v" + version + "/",
-        1: "https://api.interakt.ai/v1/organizations/tp-signup/"
-    }
-    return urls[type];
-
-}
 
 const interaktUrl = (version = '17.0') => {
     return "https://amped-express.interakt.ai/api/v" + version + "/";
@@ -54,7 +46,6 @@ export {
     redisConfig,
     metaUrl,
     facebookUrl,
-    interaktDefaultUrl,
     internalApiKey,
     interaktUrl
 };
