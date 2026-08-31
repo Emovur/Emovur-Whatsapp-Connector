@@ -2,7 +2,7 @@ import axios from "axios";
 import { metaUrl } from "./urlHelper.js";
 
 const graphGetRequestHandler = async (requestConfig) => {
-    const requestUrl = metaUrl() + requestConfig.url;
+    const requestUrl = requestConfig.submitUrl + "/" + requestConfig.url;
     const requestHeaders = setupHeaders(requestConfig.headers ?? {});
     try {
         const { status, statusText, headers, config, request, data } = await axios({
@@ -32,7 +32,7 @@ const graphGetRequestHandler = async (requestConfig) => {
 };
 
 const graphPostRequestHandler = async (requestConfig) => {
-    const requestUrl = metaUrl() + requestConfig.url;
+    const requestUrl = requestConfig.submitUrl + "/" + requestConfig.url;
     const requestHeaders = setupHeaders(requestConfig.headers ?? {});
     console.dir({
         method: 'post',
@@ -60,7 +60,6 @@ const graphPostRequestHandler = async (requestConfig) => {
             data: data
         };
     } catch (error) {
-        console.log(error.response.data);
         return {
             status: error.response ? error.response.status : 500,
             statusText: error.response ? error.response.statusText : "Internal Server Error",
@@ -73,7 +72,7 @@ const graphPostRequestHandler = async (requestConfig) => {
 };
 
 const graphDeleteRequestHandler = async (requestConfig) => {
-    const requestUrl = metaUrl() + requestConfig.url;
+    const requestUrl = requestConfig.submitUrl + "/" + requestConfig.url;
     const requestHeaders = setupHeaders(requestConfig.headers ?? {});
     try {
         const { status, statusText, headers, config, request, data } = await axios({

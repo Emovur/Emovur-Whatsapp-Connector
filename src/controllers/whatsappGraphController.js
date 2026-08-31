@@ -10,12 +10,13 @@ const getRequestHandler = asyncHandler(async (req, res, next) => {
     const connectorId = req.headers['connector-id'];
     const connector = await getConnectorById(connectorId);
     const whatsappSettings = await getOrgWhatsappSettings(connector.orgId);
-    const sendHeaders = await getHeaderConfig(whatsappSettings);
+    const { submitUrl, headers: sendHeaders } = await getHeaderConfig(whatsappSettings);
     const requestHeaders = {
         ...req.headers,
         ...sendHeaders
     };
     const response = await graphGetRequestHandler({
+        submitUrl: submitUrl,
         url: urlsegment,
         headers: requestHeaders,
         params: queryParams
@@ -30,7 +31,7 @@ const postRequestHandler = asyncHandler(async (req, res, next) => {
     const connectorId = req.headers['connector-id'];
     const connector = await getConnectorById(connectorId);
     const whatsappSettings = await getOrgWhatsappSettings(connector.orgId);
-    const sendHeaders = await getHeaderConfig(whatsappSettings);
+    const { submitUrl, headers: sendHeaders } = await getHeaderConfig(whatsappSettings);
     const requestHeaders = {
         ...req.headers,
         ...sendHeaders,
@@ -38,6 +39,7 @@ const postRequestHandler = asyncHandler(async (req, res, next) => {
     };
 
     const response = await graphPostRequestHandler({
+        submitUrl: submitUrl,
         url: urlsegment,
         headers: requestHeaders,
         params: queryParams,
@@ -53,12 +55,13 @@ const deleteRequestHandler = asyncHandler(async (req, res, next) => {
     const connectorId = req.headers['connector-id'];
     const connector = await getConnectorById(connectorId);
     const whatsappSettings = await getOrgWhatsappSettings(connector.orgId);
-    const sendHeaders = await getHeaderConfig(whatsappSettings);
+    const { submitUrl, headers: sendHeaders } = await getHeaderConfig(whatsappSettings);
     const requestHeaders = {
         ...req.headers,
         ...sendHeaders
     };
     const response = await graphDeleteRequestHandler({
+        submitUrl: submitUrl,
         url: urlsegment,
         headers: requestHeaders,
         params: queryParams,

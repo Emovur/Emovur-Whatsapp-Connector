@@ -30,14 +30,21 @@ const getHeaderConfig = async (whatsappSettings) => {
 
 const getInteraktCloudConfig = async (whatsappSettings) => {
     return {
-        'x-access-token': whatsappSettings.sendToken,
-        'x-waba-id': whatsappSettings.business.wabaId
+        submitUrl: interaktUrl() + (whatsappSettings.phone.senderId),
+        headers: {
+            'x-access-token': whatsappSettings.sendToken,
+            'x-waba-id': whatsappSettings.business.wabaId
+        }
     };
 }
 
 const getMetaCloudConfig = async (whatsappSettings) => {
     return {
-        'Authorization': 'Bearer ' + whatsappSettings.accessToken
+        submitUrl: metaUrl() + (whatsappSettings.phone.senderId),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + whatsappSettings.accessToken
+        }
     };
 }
 
