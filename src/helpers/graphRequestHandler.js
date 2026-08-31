@@ -119,7 +119,10 @@ const setupHeaders = (headers) => {
         'connection',
         'api-key',
         'connector-id',
-        'content-length'
+        'content-length',
+        'x-forwarded-for',
+        'x-forwarded-host',
+        'x-forwarded-prot',
     ];
 
     // Safely delete each blacklisted header if it exists
