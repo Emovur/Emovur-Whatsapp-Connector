@@ -21,7 +21,7 @@ const getOrgWhatsappSettings = async (orgId) => {
 
 const getHeaderConfig = async (whatsappSettings) => {
     if (whatsappSettings.type === "interakt_cloud" || whatsappSettings.type === "interakt") {
-        return await getInteraktCloudConfig(whatsappSettings, sendEndpoint);
+        return await getInteraktCloudConfig(whatsappSettings);
     }
 
     return await getMetaCloudConfig(whatsappSettings);
