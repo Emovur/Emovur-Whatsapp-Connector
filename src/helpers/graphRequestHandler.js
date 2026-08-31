@@ -123,6 +123,7 @@ const setupHeaders = (headers) => {
         'x-forwarded-for',
         'x-forwarded-host',
         'x-forwarded-prot',
+        'x-forwarded-proto',
     ];
 
     // Safely delete each blacklisted header if it exists
