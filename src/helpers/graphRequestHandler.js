@@ -1,5 +1,4 @@
 import axios from "axios";
-import { metaUrl } from "./urlHelper.js";
 
 const graphGetRequestHandler = async (requestConfig) => {
     const requestUrl = requestConfig.submitUrl + requestConfig.url;
@@ -34,13 +33,6 @@ const graphGetRequestHandler = async (requestConfig) => {
 const graphPostRequestHandler = async (requestConfig) => {
     const requestUrl = requestConfig.submitUrl + requestConfig.url;
     const requestHeaders = setupHeaders(requestConfig.headers ?? {});
-    console.dir({
-        method: 'post',
-        url: requestUrl,
-        headers: requestHeaders,
-        params: requestConfig.params ?? {},
-        data: requestConfig.data ?? {},
-    }, { depth: null });
     try {
         const { status, statusText, headers, config, request, data } = await axios({
             method: 'post',
@@ -91,7 +83,6 @@ const graphDeleteRequestHandler = async (requestConfig) => {
             data: data
         };
     } catch (error) {
-        console.log(error);
         return {
             status: error.response ? error.response.status : 500,
             statusText: error.response ? error.response.statusText : "Internal Server Error",
