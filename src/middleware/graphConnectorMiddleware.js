@@ -11,9 +11,14 @@ const graphConnectorMiddleware = async (req, res, next) => {
     }
 
     const connector = await getConnectorById(connectorId);
+
     if (!connector) {
         return res.status(422).json({ message: "Invalid Connector Access3" });
     }
+
+    delete req.headers['connector-id'];
+    req.headers['x-org-id'] = connector.orgId;
+
     next();
 }
 

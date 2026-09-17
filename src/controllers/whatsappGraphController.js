@@ -1,15 +1,13 @@
 import asyncHandler from './../utills/asyncHandler.js';
 import FormData from 'form-data';
-import { getConnectorById } from '../helpers/connectorHelper.js';
 import { graphDeleteRequestHandler, graphGetRequestHandler, graphPostRequestHandler } from '../helpers/graphRequestHandler.js';
 import { getHeaderConfig, getOrgWhatsappSettings } from '../helpers/whatsappSettingHelper.js';
 
 const getRequestHandler = asyncHandler(async (req, res, next) => {
     const urlsegment = req.params[0];
     const queryParams = req.query;
-    const connectorId = req.headers['connector-id'];
-    const connector = await getConnectorById(connectorId);
-    const whatsappSettings = await getOrgWhatsappSettings(connector.orgId);
+    const orgId = req.headers['x-org-id'];
+    const whatsappSettings = await getOrgWhatsappSettings(orgId);
     const { submitUrl, headers: sendHeaders } = await getHeaderConfig(whatsappSettings);
     const requestHeaders = {
         ...req.headers,
@@ -28,9 +26,8 @@ const postRequestHandler = asyncHandler(async (req, res, next) => {
     const urlsegment = req.params[0];
     const queryParams = req.query;
     const { body: bodyData, headers: fileHeaders } = await fileRequestHandler(req.body, req.files);
-    const connectorId = req.headers['connector-id'];
-    const connector = await getConnectorById(connectorId);
-    const whatsappSettings = await getOrgWhatsappSettings(connector.orgId);
+    const orgId = req.headers['x-org-id'];
+    const whatsappSettings = await getOrgWhatsappSettings(orgId);
     const { submitUrl, headers: sendHeaders } = await getHeaderConfig(whatsappSettings);
     const requestHeaders = {
         ...req.headers,
@@ -52,9 +49,8 @@ const deleteRequestHandler = asyncHandler(async (req, res, next) => {
     const urlsegment = req.params[0];
     const queryParams = req.query;
     const bodyData = req.body;
-    const connectorId = req.headers['connector-id'];
-    const connector = await getConnectorById(connectorId);
-    const whatsappSettings = await getOrgWhatsappSettings(connector.orgId);
+    const orgId = req.headers['x-org-id'];
+    const whatsappSettings = await getOrgWhatsappSettings(orgId);
     const { submitUrl, headers: sendHeaders } = await getHeaderConfig(whatsappSettings);
     const requestHeaders = {
         ...req.headers,
