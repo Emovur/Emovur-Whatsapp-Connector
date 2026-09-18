@@ -19,13 +19,12 @@ const getOrgWhatsappSettings = async (orgId) => {
     }
 }
 
-const getHeaderConfig = async (whatsappSettings) => {
-    if (whatsappSettings.type === "interakt_cloud" || whatsappSettings.type === "interakt") {
+const getHeaderConfig = async (whatsappSettings, isMessage = 0) => {
+    if (isMessage && (whatsappSettings.type === "interakt_cloud" || whatsappSettings.type === "interakt")) {
         return await getInteraktCloudConfig(whatsappSettings);
     }
 
     return await getMetaCloudConfig(whatsappSettings);
-
 }
 
 const getInteraktCloudConfig = async (whatsappSettings) => {

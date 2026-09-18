@@ -24,11 +24,12 @@ const getRequestHandler = asyncHandler(async (req, res, next) => {
 
 const postRequestHandler = asyncHandler(async (req, res, next) => {
     const urlsegment = req.params[0];
+    const isMessage = urlsegment.includes('messages');
     const queryParams = req.query;
     const { body: bodyData, headers: fileHeaders } = await fileRequestHandler(req.body, req.files);
     const orgId = req.headers['x-org-id'];
     const whatsappSettings = await getOrgWhatsappSettings(orgId);
-    const { submitUrl, headers: sendHeaders } = await getHeaderConfig(whatsappSettings);
+    const { submitUrl, headers: sendHeaders } = await getHeaderConfig(whatsappSettings, isMessage);
     const requestHeaders = {
         ...req.headers,
         ...sendHeaders,
