@@ -41,7 +41,6 @@ const getMetaCloudConfig = async (whatsappSettings) => {
     return {
         submitUrl: metaUrl(),
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + whatsappSettings.accessToken
         }
     };

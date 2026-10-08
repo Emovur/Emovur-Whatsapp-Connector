@@ -98,4 +98,23 @@ const fileRequestHandler = async (requestBody, requestFiles) => {
     }
 }
 
-export { getRequestHandler, postRequestHandler, deleteRequestHandler };
+const downloadwhatsappMedia = asyncHandler(async (req, res, next) => {
+    const orgId = req.headers['x-org-id'];
+    const mediaUrl = req.query.url;
+    const whatsappSettings = await getOrgWhatsappSettings(orgId);
+    const { submitUrl, headers: sendHeaders } = await getHeaderConfig(whatsappSettings);
+    const requestHeaders = {
+        ...req.headers,
+        ...sendHeaders
+    };
+    const response = await graphGetRequestHandler({
+        submitUrl: '',
+        url: mediaUrl,
+        headers: requestHeaders,
+        responseType: 'arraybuffer'
+    });
+
+    return res.header(response.headers).status(response.status).send(response.data);
+});
+
+export { getRequestHandler, postRequestHandler, deleteRequestHandler, downloadwhatsappMedia };

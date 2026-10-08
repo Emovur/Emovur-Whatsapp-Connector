@@ -8,7 +8,8 @@ const graphGetRequestHandler = async (requestConfig) => {
             method: 'get',
             url: requestUrl,
             headers: requestHeaders,
-            params: requestConfig.params ?? {}
+            params: requestConfig.params ?? {},
+            ...(requestConfig.responseType ? { responseType: requestConfig.responseType } : {})
         });
         return {
             status: status,
@@ -118,6 +119,10 @@ const setupHeaders = (headers) => {
 
     // Safely delete each blacklisted header if it exists
     keysToRemove.forEach(key => delete updatedHeaders[key]);
+
+    if (!updatedHeaders['content-type']) {
+        updatedHeaders['content-type'] = 'application/json';
+    }
 
     return updatedHeaders;
 };
