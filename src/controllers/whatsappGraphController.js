@@ -2,6 +2,8 @@ import asyncHandler from './../utills/asyncHandler.js';
 import FormData from 'form-data';
 import { graphDeleteRequestHandler, graphGetRequestHandler, graphPostRequestHandler } from '../helpers/graphRequestHandler.js';
 import { getHeaderConfig, getOrgWhatsappSettings } from '../helpers/whatsappSettingHelper.js';
+import { multerUploadedFiles } from '../helpers/multerFileHelper.js';
+import { uploadMediaFileToMeta } from '../helpers/whatsappMediaHelper.js';
 
 const getRequestHandler = asyncHandler(async (req, res, next) => {
     const urlsegment = req.params[0];
@@ -117,4 +119,14 @@ const downloadwhatsappMedia = asyncHandler(async (req, res, next) => {
     return res.header(response.headers).status(response.status).send(response.data);
 });
 
-export { getRequestHandler, postRequestHandler, deleteRequestHandler, downloadwhatsappMedia };
+const createwhatsappMediaHandle = asyncHandler(async (req, res, next) => {
+    const orgId = req.headers['x-org-id'];
+    const mediaFiles = multerUploadedFiles(req.files);
+    const uploadedMedia = await uploadMediaFileToMeta(orgId, mediaFiles);
+    if (uploadedMedia.status !== 200) {
+        return res.status(uploadedMedia.status).json({ message: uploadedMedia.message });
+    }
+    return res.status(uploadedMedia.status).json({ ...uploadedMedia.data });
+});
+
+export { getRequestHandler, postRequestHandler, deleteRequestHandler, downloadwhatsappMedia, createwhatsappMediaHandle };
